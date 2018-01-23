@@ -1,0 +1,7 @@
+CSCI 3308: Lab 1
+Authors: David Skrenta
+
+1) mkdir cs3308
+2) mv cs3308 CSCI3308 && cd CSCI3308
+3) ls -a
+4) 
