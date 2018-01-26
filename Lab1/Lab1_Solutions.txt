@@ -1,7 +1,45 @@
 CSCI 3308: Lab 1
 Authors: David Skrenta
 
-1) mkdir cs3308
-2) mv cs3308 CSCI3308 && cd CSCI3308
-3) ls -a
-4) 
+Step 4)
+  1) mkdir cs3308
+  2) 
+    mv cs3308 CSCI3308
+    cd CSCI3308
+  3) ls -a
+  4) ls -1S pictures
+  5) 
+    mkdir bigData 
+    cp pictures/Eyjafjallajokull_volcano_plume_2010_04_17.jpg bigData
+    cp texts/dracula.txt bigData
+  6) 
+    zip bigData bigData.zip
+    unzip -v bigData.zip
+  7) tar -cvf bigData bigData.tar
+  8) rm -rf bigData 
+  9) tar -xvf bigData.tar 
+  10)
+    unzip -l little1.zip
+    unzip -l little2.zip
+  11) 
+    find . -name "target.txt"
+    ./Mystery/32/target.txt
+  12) 
+    head -n 5 texts/dracula.txt
+    tail -n 5 texts/frankenstein.txt
+
+Step 5) 
+  1) sort -t: -k 1 -g password_demo.txt
+  2) sort -t: -k 3 -g password_demo.txt
+  3) sort -t: -k 4,3 -g password_demo.txt
+  4) grep "daemon" password_demo.txt
+  5) wc -l password_demo.txt
+  6) sort -t: -k 4 password_demo.txt
+  7) sort -t: -k 4 password_demo.txt > tmp
+  8) 
+    script: getUniqueGID.sh
+      #!/bin/bash
+      sort -t: -k 4 password_demo.txt
+
+    run:
+      chmod +x getUniqueGID.sh && ./getUniqueGID.sh 
