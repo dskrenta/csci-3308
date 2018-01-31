@@ -1,0 +1,55 @@
+CSCI 3308: Lab 2
+Authors: David Skrenta
+
+Step 1) 
+  Done
+
+Step 2)
+  1) diff fruits_v1.txt fruits_v2.txt
+  2) 
+    > and < denote a line being present in the first file that is not present
+    in the second and vice versa
+  3) 
+    diff -c fruits_v1.txt fruits_v2.txt
+    Shows excerpts from files where they do not match
+
+Step 3)
+  1) wc -l password_demo.txt
+  2) wc -m password_demo.txt
+
+Step 4) 
+  1) cut -d : -f 1 password_demo.txt
+  2) cut -d ' ' -f 2,4 grades.txt
+
+Step 5)
+  1) cut -d : -f 3 password_demo.txt | uniq -u
+  2) cut -d : -f 3 password_demo.txt | uniq -u > output.txt
+  3) grep -P "^(m|w|s)" password_demo.txt | cut -d : -f 1, 6
+
+Step 6)
+  1) 
+    1) sed 's/[a-z]//g' cryptic.txt
+    2) sed 's/[0-9]//g' cryptic.txt
+    3) sed 's/[a-z]/_/g' cryptic.txt
+  2) 
+    #!/bin/bash
+
+    sed 's/4/a/g' cryptic.txt | sed 's/5/s/g' cryptic.txt
+
+    OR 
+
+    sed 's/4/a/g; s/5/s/g' cryptic.txt
+  3) 
+    #!/bin/bash
+
+    sed 's/4/a/g; s/5/s/g' $1
+
+Step 7)
+  1) awk 'NR>1 {print $1 " " $2 ", Grade Average: " $3+$4+$5+$6+$7/5}' grades.txt
+  2) awk '{ sum += $3 } END { if (NR > 0) print "Lab Average: " sum / NR }' grades.txt
+
+Step 8)
+  1) grep -c -P "^\d{3}-\d{3}-\d{4}" regex_practice_data.txt 
+  2) grep -c "^303-441-" regex_practice_data.txt
+  3) grep -c -P "^\S*@\S*.\S*" regex_practice_data.txt 
+  4) grep -c -P "^\S*@\S*.gov" regex_practice_data.txt 
