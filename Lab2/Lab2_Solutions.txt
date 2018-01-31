@@ -31,18 +31,28 @@ Step 6)
     1) sed 's/[a-z]//g' cryptic.txt
     2) sed 's/[0-9]//g' cryptic.txt
     3) sed 's/[a-z]/_/g' cryptic.txt
-  2) 
-    #!/bin/bash
+  2)
+    script:  
+      #!/bin/bash
 
-    sed 's/4/a/g' cryptic.txt | sed 's/5/s/g' cryptic.txt
+      sed 's/4/a/g' cryptic.txt | sed 's/5/s/g' | sed 's/3/e/g' | sed 's/0/o/g' | sed 's/7/t/g' | sed 's/1/i/g'
 
-    OR 
+      # OR
 
-    sed 's/4/a/g; s/5/s/g' cryptic.txt
+      sed 's/3/e/g; s/0/o/g; s/5/s/g; s/4/a/g; s/5/s/g; s/7/t/g; s/1/i/g;' cryptic.txt
+
+    run: 
+      chmod +x script1.sh
+      ./script1.sh
   3) 
-    #!/bin/bash
+    script: 
+      #!/bin/bash
 
-    sed 's/4/a/g; s/5/s/g' $1
+      sed 's/3/e/g; s/0/o/g; s/5/s/g; s/4/a/g; s/5/s/g; s/7/t/g; s/1/i/g;' $1
+
+    run: 
+      chmod +x script2.sh
+      ./script2.sh file.txt
 
 Step 7)
   1) awk 'NR>1 {print $1 " " $2 ", Grade Average: " $3+$4+$5+$6+$7/5}' grades.txt
