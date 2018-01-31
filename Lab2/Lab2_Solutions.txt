@@ -55,7 +55,7 @@ Step 6)
       ./script2.sh file.txt
 
 Step 7)
-  1) awk 'NR>1 {print $1 " " $2 ", Grade Average: " $3+$4+$5+$6+$7/5}' grades.txt
+  1) awk 'NR>1 {print $1 " " $2 ", Grade Average: " ($3+$4+$5+$6+$7)/5}' grades.txt
   2) awk '{ sum += $3 } END { if (NR > 0) print "Lab Average: " sum / NR }' grades.txt
 
 Step 8)
