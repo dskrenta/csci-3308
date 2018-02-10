@@ -1,0 +1,20 @@
+Lab 3: Scrum
+Author: David Skrenta
+
+1) Scrum master introduces user stories
+2) Team votes on inital understanding and ideas about the user story
+3) Reach consensus
+4) If someone is an outlier, they usually speak out why they voted differently
+4) Others chime in with explanations, ideas for potential solutions, as well as imformation sharing about how that selection of code may be developed
+6) Goto step 2 until consensus is reached
+
+User Stories
+1) As a user, I want to upload graphs and images so that I can share them with my peers
+  1) Done
+  2...6) Consensus reached on a web based solution with a frontend and a backend that allows users to create and store graphs and images.
+2) As an administrator, I want to introduce an anti-plagiarism tool
+  1) Done
+  2...6) Consensus reached on API that takes in text and checks against other sources from the web and other student submissions.
+3) As a user, I want data visualization on Moodle, so I have better understanding of my progress 
+  1) Done
+  2...6) Consensus reached on adding D3 graphs to moodle
