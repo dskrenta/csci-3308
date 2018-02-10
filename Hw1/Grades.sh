@@ -1,4 +1,5 @@
 #!/bin/bash
+# Grades.sh, Author: David Skrenta
 
 file="StudentGrades.txt"
 
@@ -8,4 +9,4 @@ do
   set $line
   avg=$((($4 + $5 + $6) / 3))
   echo "$avg [$1] $3, $2"
-done <"$file"
+done < "$file"
