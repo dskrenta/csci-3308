@@ -1,7 +1,7 @@
 #!/bin/bash
 # Grades.sh, Author: David Skrenta
 
-file="StudentGrades.txt"
+file=$1
 
 while IFS= read line
 do
