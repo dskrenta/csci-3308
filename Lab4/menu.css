@@ -1,0 +1,55 @@
+/* the css rules for menu.html */
+
+body {
+    margin: 0px;
+    /* Change */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /* Change */
+    background-color: aliceblue;
+}
+
+.menu {
+    border: 1px solid black;
+    width: 20%;
+    position: fixed;
+    float: left
+}
+
+.menu-item {
+    /* Change */
+    border: 1px dotted black;
+    margin: 5px 5px 5px 0px;
+    padding: 10px;
+}
+
+/* Change */
+h1 {
+    color: red;
+}
+
+/* Change */
+h1:hover {
+    color: antiquewhite;
+}
+
+/* Change */
+p {
+    color: violet;
+}
+
+/* Change */
+p:hover {
+    color: teal;
+}
+
+/* Change */
+a:hover {
+    color: greenyellow;
+}
+
+.content {
+    /* Change */
+    border: 1px dashed black;
+    float: right;
+    width: calc(80% - 5px);
+}

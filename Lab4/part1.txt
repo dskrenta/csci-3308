@@ -4,43 +4,39 @@ Author: David Skrenta
 1) 
   background-color: red
 
-  .div {
+  #div1 {
     background-color: red
   }
 
 2)
-  
+  margin: Margin adds space around the outside of the box.
+  padding: Padding addds space around the inner inside of the box.   
 
 3)
+  It will be outside the container box.
 
 4)
+  Scroll allows a scollbar inside the overflowed container. 
+  Hidden just hides anything that is larger than the container.
 
 5)
+  Float left: 1, 2, 3
+  Float right: 3, 2, 1
 
 6)
+  1, 2, 3 (Next to eachother on the same line)
 
 7)
+  div {
+    border: 2px solid black;
+    height: 100px;
+    width: 100px;
+    float: left;
+  }
+
+  #div3 {
+    clear: left;
+  }
 
 8)
-
-1. Give div1 a new background color. What css rule did you use? How would you write it
-in a css file so that only this div gets the new background color?
-2. Edit the margin and padding attributes of the divs. What does changing the margin do?
-What does changing the padding do?
-● Now change the background color of the <p> element inside div 1 to yellow.
-3. Change the margin and padding of the yellow <p>. What happens if the margin is
-greater than 100px? What happens if the padding is greater than 100px?
-4. Keeping the padding greater than 100px, change the overflow of div1. What is the
-difference between scroll and hidden?
-● Refresh the page to return the divs to their original states.
-5. Give all divs the float: left attribute. What order are they in? What if they all have the
-float: right attribute instead?
-6. Keeping all divs with the float: right attribute, give each one in turn the two attributes
-float: left and clear: right. Describe the relative positions of the boxes with each
-combination.
-7. Refresh the page and recreate the arrangement of divs
-shown in the picture on the right:
-What attributes do the divs have?
-● Refresh the page to return the divs to their original states.
-8. Give the body element a margin value of 0px. What changes? What does this tell you
-about the default margin value?
+  The default margin slightly aligns objects on the page left. 
