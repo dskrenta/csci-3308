@@ -1,0 +1,7 @@
+Q: What are the things needed for Bootstrap to be loaded?
+A: The bootstrap css CDN, the bootstrap js CDN, jQuery, Popper.js
+
+Q: How does Bootstrap’s Grid system work? (Please do not copy and paste the answer from the
+official website, you are required to explain it in your own words. Feel free to use analogies if it
+makes things easier!)
+A: Bootstrap's Grid system works by dividing the container of the grid into sections determined by percentages. 

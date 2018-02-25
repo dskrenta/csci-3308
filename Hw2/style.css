@@ -1,0 +1,36 @@
+.white {
+    color: white;
+}
+
+.text-nowrap {
+    white-space: nowrap;
+}
+
+.red {
+    background-color: red;
+}
+
+.orange {
+    background-color: orange;
+}
+
+.black {
+    background-color: black;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.green {
+    background-color: green;
+}
+
+.padding {
+    padding: 10px;
+}
+
