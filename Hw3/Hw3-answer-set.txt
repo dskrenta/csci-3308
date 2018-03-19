@@ -1,0 +1,391 @@
+select FirstName, LastName from nwEmployees where Country != "USA" and HireDate >= curdate() - INTERVAL 5 year;
+
++-----------+----------+
+| FirstName | LastName |
++-----------+----------+
+| Steven    | Buchanan |
++-----------+----------+
+1 row in set (0.00 sec)
+
+select ProductID, ProductName, UnitsInStock, UnitPrice from nwProducts where UnitsInStock >= 1 order by ReorderLevel asc;
+
++-----------+------------------------------------+--------------+-----------+
+| ProductID | ProductName                        | UnitsInStock | UnitPrice |
++-----------+------------------------------------+--------------+-----------+
+|        72 | Mozzarella di Giovanni             |           14 |     34.80 |
+|         4 | Chef Anton's Cajun Seasoning       |           53 |     22.00 |
+|        71 | Flotemysost                        |           26 |     21.50 |
+|        65 | Louisiana Fiery Hot Pepper Sauce   |           76 |     21.05 |
+|         8 | Northwoods Cranberry Sauce         |            6 |     40.00 |
+|         9 | Mishi Kobe Niku                    |           29 |     97.00 |
+|        10 | Ikura                              |           31 |     31.00 |
+|        12 | Queso Manchego La Pastora          |           86 |     38.00 |
+|        14 | Tofu                               |           35 |     23.25 |
+|        62 | Tarte au sucre                     |           17 |     49.30 |
+|        18 | Carnarvon Tigers                   |           42 |     62.50 |
+|        20 | Sir Rodney's Marmalade             |           40 |     81.00 |
+|        60 | Camembert Pierrot                  |           19 |     34.00 |
+|        59 | Raclette Courdavault               |           79 |     55.00 |
+|        24 | Guaran· Fant·stica                 |           20 |      4.50 |
+|        47 | Zaanse koeken                      |           36 |      9.50 |
+|        26 | Gumb‰r Gummib‰rchen                |           15 |     31.23 |
+|        46 | Spegesild                          |           95 |     12.00 |
+|        28 | Rˆssle Sauerkraut                  |           26 |     45.60 |
+|        42 | Singaporean Hokkien Fried Mee      |           26 |     14.00 |
+|        74 | Longlife Tofu                      |            4 |     10.00 |
+|        73 | Rˆd Kaviar                         |          101 |     15.00 |
+|        63 | Vegie-spread                       |           24 |     43.90 |
+|        13 | Konbu                              |           24 |      6.00 |
+|        15 | Genen Shouyu                       |           39 |     15.50 |
+|        19 | Teatime Chocolate Biscuits         |           25 |      9.20 |
+|        21 | Sir Rodney's Scones                |            3 |     10.00 |
+|        39 | Chartreuse verte                   |           69 |     18.00 |
+|        41 | Jack's New England Clam Chowder    |           85 |      9.65 |
+|         1 | Chai                               |           39 |     18.00 |
+|        67 | Laughing Lumberjack Lager          |           52 |     14.00 |
+|         7 | Uncle Bob's Organic Dried Pears    |           15 |     30.00 |
+|        16 | Pavlova                            |           29 |     17.45 |
+|        54 | TourtiËre                          |           21 |      7.45 |
+|        51 | Manjimup Dried Apples              |           20 |     53.00 |
+|        77 | Original Frankfurter gr¸ne Soﬂe    |           32 |     13.00 |
+|        30 | Nord-Ost Matjeshering              |           10 |     25.89 |
+|        44 | Gula Malacca                       |           27 |     19.45 |
+|        45 | Rogede sild                        |            5 |      9.50 |
+|        34 | Sasquatch Ale                      |          111 |     14.00 |
+|        69 | Gudbrandsdalsost                   |           26 |     36.00 |
+|        68 | Scottish Longbreads                |            6 |     12.50 |
+|        49 | Maxilaku                           |           10 |     20.00 |
+|        35 | Steeleye Stout                     |           20 |     18.00 |
+|        38 | CÙte de Blaye                      |           17 |    263.50 |
+|        33 | Geitost                            |          112 |      2.50 |
+|        76 | Lakkalikˆˆri                       |           57 |     18.00 |
+|        66 | Louisiana Hot Spiced Okra          |            4 |     17.00 |
+|        36 | Inlagd Sill                        |          112 |     19.00 |
+|        55 | P‚tÈ chinois                       |          115 |     24.00 |
+|        58 | Escargots de Bourgogne             |           62 |     13.25 |
+|        57 | Ravioli Angelo                     |           36 |     19.50 |
+|        22 | Gustaf's Kn‰ckebrˆd                |          104 |     21.00 |
+|        23 | Tunnbrˆd                           |           61 |      9.00 |
+|        61 | Sirop d'Èrable                     |          113 |     28.50 |
+|        37 | Gravad lax                         |           11 |     26.00 |
+|        52 | Filo Mix                           |           38 |      7.00 |
+|        32 | Mascarpone Fabioli                 |            9 |     32.00 |
+|        48 | Chocolade                          |           15 |     12.75 |
+|         6 | Grandma's Boysenberry Spread       |          120 |     25.00 |
+|         3 | Aniseed Syrup                      |           13 |     10.00 |
+|         2 | Chang                              |           17 |     19.00 |
+|        75 | Rhˆnbr‰u Klosterbier               |          125 |      7.75 |
+|        43 | Ipoh Coffee                        |           17 |     46.00 |
+|        40 | Boston Crab Meat                   |          123 |     18.40 |
+|        11 | Queso Cabrales                     |           22 |     21.00 |
+|        64 | Wimmers gute Semmelknˆdel          |           22 |     33.25 |
+|        50 | Valkoinen suklaa                   |           65 |     16.25 |
+|        25 | NuNuCa Nuﬂ-Nougat-Creme            |           76 |     14.00 |
+|        70 | Outback Lager                      |           15 |     15.00 |
+|        27 | Schoggi Schokolade                 |           49 |     43.90 |
+|        56 | Gnocchi di nonna Alice             |           21 |     38.00 |
++-----------+------------------------------------+--------------+-----------+
+72 rows in set (0.00 sec)
+
+select ProductName, UnitPrice from nwProducts order by UnitPrice desc limit 1;
+
++----------------+-----------+
+| ProductName    | UnitPrice |
++----------------+-----------+
+| CÙte de Blaye  |    263.50 |
++----------------+-----------+
+1 row in set (0.00 sec)
+
+select * from (select *, UnitPrice * UnitsInStock as InventoryValue from nwProducts) as x where InventoryValue > 2000 order by InventoryValue desc;
+
++-----------+------------------------------+------------+------------+---------------------+-----------+--------------+--------------+--------------+--------------+----------------+
+| ProductID | ProductName                  | SupplierID | CategoryID | QuantityPerUnit     | UnitPrice | UnitsInStock | UnitsOnOrder | ReorderLevel | Discontinued | InventoryValue |
++-----------+------------------------------+------------+------------+---------------------+-----------+--------------+--------------+--------------+--------------+----------------+
+|        38 | CÙte de Blaye                |         18 |          1 | 12 - 75 cl bottles  |    263.50 |           17 |            0 |           15 | 0            |        4479.50 |
+|        59 | Raclette Courdavault         |         28 |          4 | 5 kg pkg.           |     55.00 |           79 |            0 |            0 | 0            |        4345.00 |
+|        12 | Queso Manchego La Pastora    |          5 |          4 | 10 - 500 g pkgs.    |     38.00 |           86 |            0 |            0 | 0            |        3268.00 |
+|        20 | Sir Rodney's Marmalade       |          8 |          3 | 30 gift boxes       |     81.00 |           40 |            0 |            0 | 0            |        3240.00 |
+|        61 | Sirop d'Èrable               |         29 |          2 | 24 - 500 ml bottles |     28.50 |          113 |            0 |           25 | 0            |        3220.50 |
+|         6 | Grandma's Boysenberry Spread |          3 |          2 | 12 - 8 oz jars      |     25.00 |          120 |            0 |           25 | 0            |        3000.00 |
+|         9 | Mishi Kobe Niku              |          4 |          6 | 18 - 500 g pkgs.    |     97.00 |           29 |            0 |            0 | 1            |        2813.00 |
+|        55 | P‚tÈ chinois                 |         25 |          6 | 24 boxes x 2 pies   |     24.00 |          115 |            0 |           20 | 0            |        2760.00 |
+|        18 | Carnarvon Tigers             |          7 |          8 | 16 kg pkg.          |     62.50 |           42 |            0 |            0 | 0            |        2625.00 |
+|        40 | Boston Crab Meat             |         19 |          8 | 24 - 4 oz tins      |     18.40 |          123 |            0 |           30 | 0            |        2263.20 |
+|        22 | Gustaf's Kn‰ckebrˆd          |          9 |          5 | 24 - 500 g pkgs.    |     21.00 |          104 |            0 |           25 | 0            |        2184.00 |
+|        27 | Schoggi Schokolade           |         11 |          3 | 100 - 100 g pieces  |     43.90 |           49 |            0 |           30 | 0            |        2151.10 |
+|        36 | Inlagd Sill                  |         17 |          8 | 24 - 250 g  jars    |     19.00 |          112 |            0 |           20 | 0            |        2128.00 |
++-----------+------------------------------+------------+------------+---------------------+-----------+--------------+--------------+--------------+--------------+----------------+
+13 rows in set (0.00 sec)
+
+select ShipCountry, count(*) as ShipCount from (select * from nwOrders where ShipCountry != "USA" and ShippedDate >= "2013-09-00 12:00:00" and ShippedDate <= "2013-09-00 12:00:00" + interval 1 month) as x group by ShipCountry;
+
+Empty set, 3 warnings (0.00 sec)
+
+select x.CustomerID, nwCustomers.CompanyName from (select CustomerID, count(*) as ShipCount from nwOrders group by CustomerID) as x join nwCustomers where ShipCount > 20;
+
++------------+--------------------------------------+
+| CustomerID | CompanyName                          |
++------------+--------------------------------------+
+| ERNSH      | Alfreds Futterkiste                  |
+| ERNSH      | Ana Trujillo Emparedados y helados   |
+| ERNSH      | Antonio Moreno Taqueria              |
+| ERNSH      | Around the Horn                      |
+| ERNSH      | Berglunds snabbkop                   |
+| ERNSH      | Blauer See Delikatessen              |
+| ERNSH      | Blondel pere et fils                 |
+| ERNSH      | Bolido Comidas preparadas            |
+| ERNSH      | Bottom-Dollar Markets                |
+| ERNSH      | Cactus Comidas para llevar           |
+| ERNSH      | Centro comercial Moctezuma           |
+| ERNSH      | Chop-suey Chinese                    |
+| ERNSH      | Comercio Mineiro                     |
+| ERNSH      | Consolidated Holdings                |
+| ERNSH      | Drachenblut Delikatessen             |
+| ERNSH      | Du monde entier                      |
+| ERNSH      | Eastern Connection                   |
+| ERNSH      | Ernst Handel                         |
+| ERNSH      | Familia Arquibaldo                   |
+| ERNSH      | FISSA Fabrica Inter. Salchichas S.A. |
+| ERNSH      | Folies gourmandes                    |
+| ERNSH      | Folk och fa HB                       |
+| ERNSH      | Frankenversand                       |
+| ERNSH      | France restauration                  |
+| ERNSH      | Franchi S.p.A.                       |
+| ERNSH      | Furia Bacalhau e Frutos do Mar       |
+| ERNSH      | Galeria del gastronomo               |
+| ERNSH      | Godos Cocina Tipica                  |
+| ERNSH      | Gourmet Lanchonetes                  |
+| ERNSH      | Great Lakes Food Market              |
+| ERNSH      | GROSELLA-Restaurante                 |
+| ERNSH      | Hanari Carnes                        |
+| ERNSH      | HILARIoN-Abastos                     |
+| ERNSH      | Hungry Coyote Import Store           |
+| ERNSH      | Hungry Owl All-Night Grocers         |
+| ERNSH      | Island Trading                       |
+| ERNSH      | Koniglich Essen                      |
+| ERNSH      | Laughing Bacchus Wine Cellars        |
+| ERNSH      | Lazy K Kountry Store                 |
+| ERNSH      | Lehmanns Marktstand                  |
+| ERNSH      | Lets Stop N Shop                     |
+| ERNSH      | LILA-Supermercado                    |
+| ERNSH      | LINO-Delicateses                     |
+| ERNSH      | Lonesome Pine Restaurant             |
+| ERNSH      | Magazzini Alimentari Riuniti         |
+| ERNSH      | Maison Dewey                         |
+| ERNSH      | Mere Paillarde                       |
+| ERNSH      | Morgenstern Gesundkost               |
+| ERNSH      | North/South                          |
+| ERNSH      | Oceano Atl·ntico Ltda.               |
+| ERNSH      | Old World Delicatessen               |
+| ERNSH      | Ottilies Kaseladen                   |
+| ERNSH      | Paris specialites                    |
+| ERNSH      | Pericles Comidas cl·sicas            |
+| ERNSH      | Piccolo und mehr                     |
+| ERNSH      | Princesa Isabel Vinhos               |
+| ERNSH      | Que Delicia                          |
+| ERNSH      | Queen Cozinha                        |
+| ERNSH      | QUICK-Stop                           |
+| ERNSH      | Rancho grande                        |
+| ERNSH      | Rattlesnake Canyon Grocery           |
+| ERNSH      | Reggiani Caseifici                   |
+| ERNSH      | Ricardo Adocicados                   |
+| ERNSH      | Richter Supermarkt                   |
+| ERNSH      | Romero y tomillo                     |
+| ERNSH      | Sante Gourmet                        |
+| ERNSH      | Save-a-lot Markets                   |
+| ERNSH      | Seven Seas Imports                   |
+| ERNSH      | Simons bistro                        |
+| ERNSH      | Specialites du monde                 |
+| ERNSH      | Split Rail Beer & Ale                |
+| ERNSH      | SuprÍmes delices                     |
+| ERNSH      | The Big Cheese                       |
+| ERNSH      | The Cracker Box                      |
+| ERNSH      | Toms Spezialitaten                   |
+| ERNSH      | Tortuga Restaurante                  |
+| ERNSH      | Tradicao Hipermercados               |
+| ERNSH      | Trails Head Gourmet Provisioners     |
+| ERNSH      | Vaffeljernet                         |
+| ERNSH      | Victuailles en stock                 |
+| ERNSH      | Vins et alcools Chevalier            |
+| ERNSH      | Die Wandernde Kuh                    |
+| ERNSH      | Wartian Herkku                       |
+| ERNSH      | Wellington Importadora               |
+| ERNSH      | White Clover Markets                 |
+| ERNSH      | Wilman Kala                          |
+| ERNSH      | Wolski Zajazd                        |
+| QUICK      | Alfreds Futterkiste                  |
+| QUICK      | Ana Trujillo Emparedados y helados   |
+| QUICK      | Antonio Moreno Taqueria              |
+| QUICK      | Around the Horn                      |
+| QUICK      | Berglunds snabbkop                   |
+| QUICK      | Blauer See Delikatessen              |
+| QUICK      | Blondel pere et fils                 |
+| QUICK      | Bolido Comidas preparadas            |
+| QUICK      | Bottom-Dollar Markets                |
+| QUICK      | Cactus Comidas para llevar           |
+| QUICK      | Centro comercial Moctezuma           |
+| QUICK      | Chop-suey Chinese                    |
+| QUICK      | Comercio Mineiro                     |
+| QUICK      | Consolidated Holdings                |
+| QUICK      | Drachenblut Delikatessen             |
+| QUICK      | Du monde entier                      |
+| QUICK      | Eastern Connection                   |
+| QUICK      | Ernst Handel                         |
+| QUICK      | Familia Arquibaldo                   |
+| QUICK      | FISSA Fabrica Inter. Salchichas S.A. |
+| QUICK      | Folies gourmandes                    |
+| QUICK      | Folk och fa HB                       |
+| QUICK      | Frankenversand                       |
+| QUICK      | France restauration                  |
+| QUICK      | Franchi S.p.A.                       |
+| QUICK      | Furia Bacalhau e Frutos do Mar       |
+| QUICK      | Galeria del gastronomo               |
+| QUICK      | Godos Cocina Tipica                  |
+| QUICK      | Gourmet Lanchonetes                  |
+| QUICK      | Great Lakes Food Market              |
+| QUICK      | GROSELLA-Restaurante                 |
+| QUICK      | Hanari Carnes                        |
+| QUICK      | HILARIoN-Abastos                     |
+| QUICK      | Hungry Coyote Import Store           |
+| QUICK      | Hungry Owl All-Night Grocers         |
+| QUICK      | Island Trading                       |
+| QUICK      | Koniglich Essen                      |
+| QUICK      | Laughing Bacchus Wine Cellars        |
+| QUICK      | Lazy K Kountry Store                 |
+| QUICK      | Lehmanns Marktstand                  |
+| QUICK      | Lets Stop N Shop                     |
+| QUICK      | LILA-Supermercado                    |
+| QUICK      | LINO-Delicateses                     |
+| QUICK      | Lonesome Pine Restaurant             |
+| QUICK      | Magazzini Alimentari Riuniti         |
+| QUICK      | Maison Dewey                         |
+| QUICK      | Mere Paillarde                       |
+| QUICK      | Morgenstern Gesundkost               |
+| QUICK      | North/South                          |
+| QUICK      | Oceano Atl·ntico Ltda.               |
+| QUICK      | Old World Delicatessen               |
+| QUICK      | Ottilies Kaseladen                   |
+| QUICK      | Paris specialites                    |
+| QUICK      | Pericles Comidas cl·sicas            |
+| QUICK      | Piccolo und mehr                     |
+| QUICK      | Princesa Isabel Vinhos               |
+| QUICK      | Que Delicia                          |
+| QUICK      | Queen Cozinha                        |
+| QUICK      | QUICK-Stop                           |
+| QUICK      | Rancho grande                        |
+| QUICK      | Rattlesnake Canyon Grocery           |
+| QUICK      | Reggiani Caseifici                   |
+| QUICK      | Ricardo Adocicados                   |
+| QUICK      | Richter Supermarkt                   |
+| QUICK      | Romero y tomillo                     |
+| QUICK      | Sante Gourmet                        |
+| QUICK      | Save-a-lot Markets                   |
+| QUICK      | Seven Seas Imports                   |
+| QUICK      | Simons bistro                        |
+| QUICK      | Specialites du monde                 |
+| QUICK      | Split Rail Beer & Ale                |
+| QUICK      | SuprÍmes delices                     |
+| QUICK      | The Big Cheese                       |
+| QUICK      | The Cracker Box                      |
+| QUICK      | Toms Spezialitaten                   |
+| QUICK      | Tortuga Restaurante                  |
+| QUICK      | Tradicao Hipermercados               |
+| QUICK      | Trails Head Gourmet Provisioners     |
+| QUICK      | Vaffeljernet                         |
+| QUICK      | Victuailles en stock                 |
+| QUICK      | Vins et alcools Chevalier            |
+| QUICK      | Die Wandernde Kuh                    |
+| QUICK      | Wartian Herkku                       |
+| QUICK      | Wellington Importadora               |
+| QUICK      | White Clover Markets                 |
+| QUICK      | Wilman Kala                          |
+| QUICK      | Wolski Zajazd                        |
+| SAVEA      | Alfreds Futterkiste                  |
+| SAVEA      | Ana Trujillo Emparedados y helados   |
+| SAVEA      | Antonio Moreno Taqueria              |
+| SAVEA      | Around the Horn                      |
+| SAVEA      | Berglunds snabbkop                   |
+| SAVEA      | Blauer See Delikatessen              |
+| SAVEA      | Blondel pere et fils                 |
+| SAVEA      | Bolido Comidas preparadas            |
+| SAVEA      | Bottom-Dollar Markets                |
+| SAVEA      | Cactus Comidas para llevar           |
+| SAVEA      | Centro comercial Moctezuma           |
+| SAVEA      | Chop-suey Chinese                    |
+| SAVEA      | Comercio Mineiro                     |
+| SAVEA      | Consolidated Holdings                |
+| SAVEA      | Drachenblut Delikatessen             |
+| SAVEA      | Du monde entier                      |
+| SAVEA      | Eastern Connection                   |
+| SAVEA      | Ernst Handel                         |
+| SAVEA      | Familia Arquibaldo                   |
+| SAVEA      | FISSA Fabrica Inter. Salchichas S.A. |
+| SAVEA      | Folies gourmandes                    |
+| SAVEA      | Folk och fa HB                       |
+| SAVEA      | Frankenversand                       |
+| SAVEA      | France restauration                  |
+| SAVEA      | Franchi S.p.A.                       |
+| SAVEA      | Furia Bacalhau e Frutos do Mar       |
+| SAVEA      | Galeria del gastronomo               |
+| SAVEA      | Godos Cocina Tipica                  |
+| SAVEA      | Gourmet Lanchonetes                  |
+| SAVEA      | Great Lakes Food Market              |
+| SAVEA      | GROSELLA-Restaurante                 |
+| SAVEA      | Hanari Carnes                        |
+| SAVEA      | HILARIoN-Abastos                     |
+| SAVEA      | Hungry Coyote Import Store           |
+| SAVEA      | Hungry Owl All-Night Grocers         |
+| SAVEA      | Island Trading                       |
+| SAVEA      | Koniglich Essen                      |
+| SAVEA      | Laughing Bacchus Wine Cellars        |
+| SAVEA      | Lazy K Kountry Store                 |
+| SAVEA      | Lehmanns Marktstand                  |
+| SAVEA      | Lets Stop N Shop                     |
+| SAVEA      | LILA-Supermercado                    |
+| SAVEA      | LINO-Delicateses                     |
+| SAVEA      | Lonesome Pine Restaurant             |
+| SAVEA      | Magazzini Alimentari Riuniti         |
+| SAVEA      | Maison Dewey                         |
+| SAVEA      | Mere Paillarde                       |
+| SAVEA      | Morgenstern Gesundkost               |
+| SAVEA      | North/South                          |
+| SAVEA      | Oceano Atl·ntico Ltda.               |
+| SAVEA      | Old World Delicatessen               |
+| SAVEA      | Ottilies Kaseladen                   |
+| SAVEA      | Paris specialites                    |
+| SAVEA      | Pericles Comidas cl·sicas            |
+| SAVEA      | Piccolo und mehr                     |
+| SAVEA      | Princesa Isabel Vinhos               |
+| SAVEA      | Que Delicia                          |
+| SAVEA      | Queen Cozinha                        |
+| SAVEA      | QUICK-Stop                           |
+| SAVEA      | Rancho grande                        |
+| SAVEA      | Rattlesnake Canyon Grocery           |
+| SAVEA      | Reggiani Caseifici                   |
+| SAVEA      | Ricardo Adocicados                   |
+| SAVEA      | Richter Supermarkt                   |
+| SAVEA      | Romero y tomillo                     |
+| SAVEA      | Sante Gourmet                        |
+| SAVEA      | Save-a-lot Markets                   |
+| SAVEA      | Seven Seas Imports                   |
+| SAVEA      | Simons bistro                        |
+| SAVEA      | Specialites du monde                 |
+| SAVEA      | Split Rail Beer & Ale                |
+| SAVEA      | SuprÍmes delices                     |
+| SAVEA      | The Big Cheese                       |
+| SAVEA      | The Cracker Box                      |
+| SAVEA      | Toms Spezialitaten                   |
+| SAVEA      | Tortuga Restaurante                  |
+| SAVEA      | Tradicao Hipermercados               |
+| SAVEA      | Trails Head Gourmet Provisioners     |
+| SAVEA      | Vaffeljernet                         |
+| SAVEA      | Victuailles en stock                 |
+| SAVEA      | Vins et alcools Chevalier            |
+| SAVEA      | Die Wandernde Kuh                    |
+| SAVEA      | Wartian Herkku                       |
+| SAVEA      | Wellington Importadora               |
+| SAVEA      | White Clover Markets                 |
+| SAVEA      | Wilman Kala                          |
+| SAVEA      | Wolski Zajazd                        |
++------------+--------------------------------------+
+261 rows in set (0.00 sec)
