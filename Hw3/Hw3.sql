@@ -16,18 +16,23 @@ select ShipCountry, count(*) as ShipCount from (select * from nwOrders where Shi
 # 6
 select x.CustomerID, nwCustomers.CompanyName from (select CustomerID, count(*) as ShipCount from nwOrders group by CustomerID) as x join nwCustomers where ShipCount > 20;
 
-# 7
+# 7 
+select * from (select SupplierID, count(*) as ProductCount, sum(UnitsInStock * UnitPrice) as InventoryValue from nwProducts group by SupplierID) as x where ProductCount >= 3;
 
-# 8
+# 8 WIP
+select CompanyName from nwSuppliers join nwProducts on nwSuppliers.Su
 
-# 9
+# 9 WIP
+select EmployeeID from (select *, count(*) as OrderCount from nwOrders group by EmployeeID) as x where x.OrderCount > 100;
 
 # 10 WIP
 select nwCategories.CustomerID, nwCategories.CompanyName, nwProducts.ProductName, nwProducts.UnitsOnOrder from nwProducts where nwProducts.UnitsInStock = 0 join nwCategories on nwCategories.CategoryID = nwProducts.CategoryID;
 
 # 11
+select nwProducts.ProductName, nwSuppliers.CompanyName, nwSuppliers.ContactName, nwCategories.CategoryName, nwCategories.CategoryDescription, nwProducts.UnitsOnOrder from nwProducts join nwCategories on nwProducts.CategoryID = nwCategories.CategoryID join nwSuppliers on nwProducts.SupplierID = nwCategories.SupplierID where nwProducts.UnitsInStock = 0;
 
 # 12
+select nwProducts.ProductName, nwSuppliers.SupplierName, nwProducts.UnitsInStock, nwSuppliers.Country from nwProducts join nwSuppliers where nwProducts.SupplierID = nwSuppliers.SupplierID;
 
 # 13
 create table Top_Items (
@@ -42,14 +47,16 @@ create table Top_Items (
 );
 
 # 14
+insert into Top_Items (ItemID, ItemCode, ItemName, InventoryDate, ItemQuantity, ItemPrice, SupplierID) select ProductID, CategoryID, ProductName, now(), UnitsInStock, UnitPrice, SupplierID from (select *, UnitPrice * UnitsInStock as InventoryValue from nwProducts) where InventoryValue > 2500;
 
 # 15
+delete from Top_Items join nwSuppliers on Top_Items.SupplierID = nwSuppliers.SupplierID where nwSuppliers.Country = "Canada";
 
 # 16
+alter table Top_Items add column InventoryValue decimal(9, 2) after InventoryDate;
 
 # 17
-
-
+update Top_Items set InventoryValue = Top_Items.UnitPrice * Top_Items.UnitsInStock;
 
 # 18
 drop Top_Items;
