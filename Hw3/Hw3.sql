@@ -19,20 +19,20 @@ select x.CustomerID, nwCustomers.CompanyName from (select CustomerID, count(*) a
 # 7 
 select * from (select SupplierID, count(*) as ProductCount, sum(UnitsInStock * UnitPrice) as InventoryValue from nwProducts group by SupplierID) as x where ProductCount >= 3;
 
-# 8 WIP
-select CompanyName from nwSuppliers join nwProducts on nwSuppliers.Su
+# 8
+select CompanyName, ProductName, UnitPrice from (select CompanyName, ProductName, UnitPrice, Country from nwProducts join nwSuppliers on nwSuppliers.SupplierID = nwProducts.SupplierID) as x where Country = "USA" order by UnitPrice desc;
 
-# 9 WIP
-select EmployeeID from (select *, count(*) as OrderCount from nwOrders group by EmployeeID) as x where x.OrderCount > 100;
+# 9
+select FirstName, LastName, Extension from (select nwEmployees.FirstName, nwEmployees.LastName, nwEmployees.Extension, nwOrders.EmployeeID, count(*) as OrderCount from nwOrders join nwEmployees on nwEmployees.EmployeeID = nwOrders.EmployeeID group by EmployeeID) as x where OrderCount > 100;
 
-# 10 WIP
-select nwCategories.CustomerID, nwCategories.CompanyName, nwProducts.ProductName, nwProducts.UnitsOnOrder from nwProducts where nwProducts.UnitsInStock = 0 join nwCategories on nwCategories.CategoryID = nwProducts.CategoryID;
+# 10 
+select x.CustomerID, CompanyName from (select CustomerID, count(*) as OrderCount from nwOrders group by CustomerID) as x join nwCustomers on x.CustomerID = nwCustomers.CustomerID where OrderCount = 0;
 
 # 11
-select nwProducts.ProductName, nwSuppliers.CompanyName, nwSuppliers.ContactName, nwCategories.CategoryName, nwCategories.CategoryDescription, nwProducts.UnitsOnOrder from nwProducts join nwCategories on nwProducts.CategoryID = nwCategories.CategoryID join nwSuppliers on nwProducts.SupplierID = nwCategories.SupplierID where nwProducts.UnitsInStock = 0;
+select nwProducts.ProductName, nwSuppliers.CompanyName, nwSuppliers.ContactName, nwCategories.CategoryName, nwCategories.Description, nwProducts.UnitsOnOrder from nwProducts join nwCategories on nwProducts.CategoryID = nwCategories.CategoryID join nwSuppliers on nwProducts.CategoryID = nwCategories.CategoryID where nwProducts.UnitsInStock = 0;
 
 # 12
-select nwProducts.ProductName, nwSuppliers.SupplierName, nwProducts.UnitsInStock, nwSuppliers.Country from nwProducts join nwSuppliers where nwProducts.SupplierID = nwSuppliers.SupplierID;
+select nwProducts.ProductName, nwSuppliers.CompanyName, nwProducts.UnitsInStock, nwSuppliers.Country from nwProducts join nwSuppliers where nwProducts.SupplierID = nwSuppliers.SupplierID;
 
 # 13
 create table Top_Items (
