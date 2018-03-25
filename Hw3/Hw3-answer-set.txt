@@ -1,4 +1,4 @@
-select FirstName, LastName from nwEmployees where Country != "USA" and HireDate >= curdate() - INTERVAL 5 year;
+# 1
 
 +-----------+----------+
 | FirstName | LastName |
@@ -7,7 +7,7 @@ select FirstName, LastName from nwEmployees where Country != "USA" and HireDate 
 +-----------+----------+
 1 row in set (0.00 sec)
 
-select ProductID, ProductName, UnitsInStock, UnitPrice from nwProducts where UnitsInStock >= 1 order by ReorderLevel asc;
+# 2
 
 +-----------+------------------------------------+--------------+-----------+
 | ProductID | ProductName                        | UnitsInStock | UnitPrice |
@@ -87,7 +87,7 @@ select ProductID, ProductName, UnitsInStock, UnitPrice from nwProducts where Uni
 +-----------+------------------------------------+--------------+-----------+
 72 rows in set (0.00 sec)
 
-select ProductName, UnitPrice from nwProducts order by UnitPrice desc limit 1;
+# 3
 
 +----------------+-----------+
 | ProductName    | UnitPrice |
@@ -96,7 +96,7 @@ select ProductName, UnitPrice from nwProducts order by UnitPrice desc limit 1;
 +----------------+-----------+
 1 row in set (0.00 sec)
 
-select * from (select *, UnitPrice * UnitsInStock as InventoryValue from nwProducts) as x where InventoryValue > 2000 order by InventoryValue desc;
+# 4 
 
 +-----------+------------------------------+------------+------------+---------------------+-----------+--------------+--------------+--------------+--------------+----------------+
 | ProductID | ProductName                  | SupplierID | CategoryID | QuantityPerUnit     | UnitPrice | UnitsInStock | UnitsOnOrder | ReorderLevel | Discontinued | InventoryValue |
@@ -117,11 +117,11 @@ select * from (select *, UnitPrice * UnitsInStock as InventoryValue from nwProdu
 +-----------+------------------------------+------------+------------+---------------------+-----------+--------------+--------------+--------------+--------------+----------------+
 13 rows in set (0.00 sec)
 
-select ShipCountry, count(*) as ShipCount from (select * from nwOrders where ShipCountry != "USA" and ShippedDate >= "2013-09-00 12:00:00" and ShippedDate <= "2013-09-00 12:00:00" + interval 1 month) as x group by ShipCountry;
+# 5
 
 Empty set, 3 warnings (0.00 sec)
 
-select x.CustomerID, nwCustomers.CompanyName from (select CustomerID, count(*) as ShipCount from nwOrders group by CustomerID) as x join nwCustomers where ShipCount > 20;
+# 6
 
 +------------+--------------------------------------+
 | CustomerID | CompanyName                          |
@@ -389,3 +389,301 @@ select x.CustomerID, nwCustomers.CompanyName from (select CustomerID, count(*) a
 | SAVEA      | Wolski Zajazd                        |
 +------------+--------------------------------------+
 261 rows in set (0.00 sec)
+
+# 7
+
++------------+--------------+----------------+
+| SupplierID | ProductCount | InventoryValue |
++------------+--------------+----------------+
+|          1 |            3 |        1155.00 |
+|          2 |            4 |        2833.80 |
+|          3 |            3 |        3690.00 |
+|          4 |            3 |        3814.00 |
+|          6 |            3 |        1562.25 |
+|          7 |            5 |        4409.65 |
+|          8 |            4 |        3575.00 |
+|         11 |            3 |        3683.55 |
+|         12 |            5 |        3301.85 |
+|         14 |            3 |         775.20 |
+|         15 |            3 |        1775.00 |
+|         16 |            3 |        2642.00 |
+|         17 |            3 |        3929.00 |
+|         20 |            3 |        1671.15 |
+|         23 |            3 |        2282.25 |
+|         24 |            3 |        1326.00 |
++------------+--------------+----------------+
+16 rows in set (0.00 sec)
+
+# 8 
+
++-----------------------------+----------------------------------+-----------+
+| CompanyName                 | ProductName                      | UnitPrice |
++-----------------------------+----------------------------------+-----------+
+| Grandma Kelly's Homestead   | Northwoods Cranberry Sauce       |     40.00 |
+| Grandma Kelly's Homestead   | Uncle Bob's Organic Dried Pears  |     30.00 |
+| Grandma Kelly's Homestead   | Grandma's Boysenberry Spread     |     25.00 |
+| New Orleans Cajun Delights  | Chef Anton's Cajun Seasoning     |     22.00 |
+| New Orleans Cajun Delights  | Chef Anton's Gumbo Mix           |     21.35 |
+| New Orleans Cajun Delights  | Louisiana Fiery Hot Pepper Sauce |     21.05 |
+| New England Seafood Cannery | Boston Crab Meat                 |     18.40 |
+| Bigfoot Breweries           | Steeleye Stout                   |     18.00 |
+| New Orleans Cajun Delights  | Louisiana Hot Spiced Okra        |     17.00 |
+| Bigfoot Breweries           | Sasquatch Ale                    |     14.00 |
+| Bigfoot Breweries           | Laughing Lumberjack Lager        |     14.00 |
+| New England Seafood Cannery | Jack's New England Clam Chowder  |      9.65 |
++-----------------------------+----------------------------------+-----------+
+12 rows in set (0.00 sec)
+
+# 9
+
++-----------+-----------+-----------+
+| FirstName | LastName  | Extension |
++-----------+-----------+-----------+
+| Nancy     | Davolio   | 5467      |
+| Janet     | Leverling | 3355      |
+| Margaret  | Peacock   | 5176      |
+| Laura     | Callahan  | 2344      |
++-----------+-----------+-----------+
+4 rows in set (0.00 sec)
+
+# 10 
+
+Empty set (0.00 sec)
+
+# 11 
+
++--------------------------+----------------------------------------+----------------------------+----------------+------------------------------------------------------------+--------------+
+| ProductName              | CompanyName                            | ContactName                | CategoryName   | Description                                                | UnitsOnOrder |
++--------------------------+----------------------------------------+----------------------------+----------------+------------------------------------------------------------+--------------+
+| Chef Anton's Gumbo Mix   | Exotic Liquids                         | Charlotte Cooper           | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Exotic Liquids                         | Charlotte Cooper           | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Exotic Liquids                         | Charlotte Cooper           | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Exotic Liquids                         | Charlotte Cooper           | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Exotic Liquids                         | Charlotte Cooper           | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | New Orleans Cajun Delights             | Shelley Burke              | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | New Orleans Cajun Delights             | Shelley Burke              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | New Orleans Cajun Delights             | Shelley Burke              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | New Orleans Cajun Delights             | Shelley Burke              | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | New Orleans Cajun Delights             | Shelley Burke              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Grandma Kelly's Homestead              | Regina Murphy              | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Grandma Kelly's Homestead              | Regina Murphy              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Grandma Kelly's Homestead              | Regina Murphy              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Grandma Kelly's Homestead              | Regina Murphy              | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Grandma Kelly's Homestead              | Regina Murphy              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Tokyo Traders                          | Yoshi Nagase               | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Tokyo Traders                          | Yoshi Nagase               | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Tokyo Traders                          | Yoshi Nagase               | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Tokyo Traders                          | Yoshi Nagase               | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Tokyo Traders                          | Yoshi Nagase               | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Cooperativa de Quesos 'Las Cabras'     | Antonio del Valle Saavedra | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Cooperativa de Quesos 'Las Cabras'     | Antonio del Valle Saavedra | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Cooperativa de Quesos 'Las Cabras'     | Antonio del Valle Saavedra | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Cooperativa de Quesos 'Las Cabras'     | Antonio del Valle Saavedra | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Cooperativa de Quesos 'Las Cabras'     | Antonio del Valle Saavedra | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Mayumi's                               | Mayumi Ohno                | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Mayumi's                               | Mayumi Ohno                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Mayumi's                               | Mayumi Ohno                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Mayumi's                               | Mayumi Ohno                | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Mayumi's                               | Mayumi Ohno                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Pavlova Ltd.                           | Ian Devling                | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Pavlova Ltd.                           | Ian Devling                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Pavlova Ltd.                           | Ian Devling                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Pavlova Ltd.                           | Ian Devling                | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Pavlova Ltd.                           | Ian Devling                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Specialty Biscuits Ltd.                | Peter Wilson               | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Specialty Biscuits Ltd.                | Peter Wilson               | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Specialty Biscuits Ltd.                | Peter Wilson               | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Specialty Biscuits Ltd.                | Peter Wilson               | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Specialty Biscuits Ltd.                | Peter Wilson               | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | PB Knäckebröd AB                       | Lars Peterson              | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | PB Knäckebröd AB                       | Lars Peterson              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | PB Knäckebröd AB                       | Lars Peterson              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | PB Knäckebröd AB                       | Lars Peterson              | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | PB Knäckebröd AB                       | Lars Peterson              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Refrescos Americanas LTDA              | Carlos Diaz                | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Refrescos Americanas LTDA              | Carlos Diaz                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Refrescos Americanas LTDA              | Carlos Diaz                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Refrescos Americanas LTDA              | Carlos Diaz                | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Refrescos Americanas LTDA              | Carlos Diaz                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Heli Süßwaren GmbH & Co. KG            | Petra Winkler              | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Heli Süßwaren GmbH & Co. KG            | Petra Winkler              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Heli Süßwaren GmbH & Co. KG            | Petra Winkler              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Heli Süßwaren GmbH & Co. KG            | Petra Winkler              | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Heli Süßwaren GmbH & Co. KG            | Petra Winkler              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Plutzer Lebensmittelgroßmärkte AG      | Martin Bein                | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Plutzer Lebensmittelgroßmärkte AG      | Martin Bein                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Plutzer Lebensmittelgroßmärkte AG      | Martin Bein                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Plutzer Lebensmittelgroßmärkte AG      | Martin Bein                | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Plutzer Lebensmittelgroßmärkte AG      | Martin Bein                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Nord-Ost-Fisch Handelsgesellschaft mbH | Sven Petersen              | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Nord-Ost-Fisch Handelsgesellschaft mbH | Sven Petersen              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Nord-Ost-Fisch Handelsgesellschaft mbH | Sven Petersen              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Nord-Ost-Fisch Handelsgesellschaft mbH | Sven Petersen              | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Nord-Ost-Fisch Handelsgesellschaft mbH | Sven Petersen              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Formaggi Fortini s.r.l.                | Elio Rossi                 | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Formaggi Fortini s.r.l.                | Elio Rossi                 | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Formaggi Fortini s.r.l.                | Elio Rossi                 | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Formaggi Fortini s.r.l.                | Elio Rossi                 | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Formaggi Fortini s.r.l.                | Elio Rossi                 | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Norske Meierier                        | Beate Vileid               | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Norske Meierier                        | Beate Vileid               | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Norske Meierier                        | Beate Vileid               | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Norske Meierier                        | Beate Vileid               | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Norske Meierier                        | Beate Vileid               | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Bigfoot Breweries                      | Cheryl Saylor              | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Bigfoot Breweries                      | Cheryl Saylor              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Bigfoot Breweries                      | Cheryl Saylor              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Bigfoot Breweries                      | Cheryl Saylor              | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Bigfoot Breweries                      | Cheryl Saylor              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Svensk Sjöföda AB                      | Michael Björn              | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Svensk Sjöföda AB                      | Michael Björn              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Svensk Sjöföda AB                      | Michael Björn              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Svensk Sjöföda AB                      | Michael Björn              | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Svensk Sjöföda AB                      | Michael Björn              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Aux joyeux ecclésiastiques             | Guylène Nodier             | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Aux joyeux ecclésiastiques             | Guylène Nodier             | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Aux joyeux ecclésiastiques             | Guylène Nodier             | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Aux joyeux ecclésiastiques             | Guylène Nodier             | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Aux joyeux ecclésiastiques             | Guylène Nodier             | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | New England Seafood Cannery            | Robb Merchant              | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | New England Seafood Cannery            | Robb Merchant              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | New England Seafood Cannery            | Robb Merchant              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | New England Seafood Cannery            | Robb Merchant              | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | New England Seafood Cannery            | Robb Merchant              | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Leka Trading                           | Chandra Leka               | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Leka Trading                           | Chandra Leka               | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Leka Trading                           | Chandra Leka               | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Leka Trading                           | Chandra Leka               | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Leka Trading                           | Chandra Leka               | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Lyngbysild                             | Niels Petersen             | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Lyngbysild                             | Niels Petersen             | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Lyngbysild                             | Niels Petersen             | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Lyngbysild                             | Niels Petersen             | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Lyngbysild                             | Niels Petersen             | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Zaanse Snoepfabriek                    | Dirk Luchte                | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Zaanse Snoepfabriek                    | Dirk Luchte                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Zaanse Snoepfabriek                    | Dirk Luchte                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Zaanse Snoepfabriek                    | Dirk Luchte                | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Zaanse Snoepfabriek                    | Dirk Luchte                | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Karkki Oy                              | Anne Heikkonen             | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Karkki Oy                              | Anne Heikkonen             | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Karkki Oy                              | Anne Heikkonen             | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Karkki Oy                              | Anne Heikkonen             | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Karkki Oy                              | Anne Heikkonen             | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | G'day Mate                             | Wendy Mackenzie            | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | G'day Mate                             | Wendy Mackenzie            | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | G'day Mate                             | Wendy Mackenzie            | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | G'day Mate                             | Wendy Mackenzie            | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | G'day Mate                             | Wendy Mackenzie            | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Ma Maison                              | Jean-Guy Lauzon            | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Ma Maison                              | Jean-Guy Lauzon            | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Ma Maison                              | Jean-Guy Lauzon            | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Ma Maison                              | Jean-Guy Lauzon            | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Ma Maison                              | Jean-Guy Lauzon            | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Pasta Buttini s.r.l.                   | Giovanni Giudici           | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Pasta Buttini s.r.l.                   | Giovanni Giudici           | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Pasta Buttini s.r.l.                   | Giovanni Giudici           | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Pasta Buttini s.r.l.                   | Giovanni Giudici           | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Pasta Buttini s.r.l.                   | Giovanni Giudici           | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Escargots Nouveaux                     | Marie Delamare             | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Escargots Nouveaux                     | Marie Delamare             | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Escargots Nouveaux                     | Marie Delamare             | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Escargots Nouveaux                     | Marie Delamare             | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Escargots Nouveaux                     | Marie Delamare             | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Gai pâturage                           | Eliane Noz                 | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Gai pâturage                           | Eliane Noz                 | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Gai pâturage                           | Eliane Noz                 | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Gai pâturage                           | Eliane Noz                 | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Gai pâturage                           | Eliane Noz                 | Meat/Poultry   | Prepared meats                                             |            0 |
+| Chef Anton's Gumbo Mix   | Forêts dérables                        | Chantal Goulet             | Condiments     | Sweet and savory sauces, relishes, spreads, and seasonings |            0 |
+| Alice Mutton             | Forêts dérables                        | Chantal Goulet             | Meat/Poultry   | Prepared meats                                             |            0 |
+| Th¸ringer Rostbratwurst  | Forêts dérables                        | Chantal Goulet             | Meat/Poultry   | Prepared meats                                             |            0 |
+| Gorgonzola Telino        | Forêts dérables                        | Chantal Goulet             | Dairy Products | Cheeses                                                    |           70 |
+| Perth Pasties            | Forêts dérables                        | Chantal Goulet             | Meat/Poultry   | Prepared meats                                             |            0 |
++--------------------------+----------------------------------------+----------------------------+----------------+------------------------------------------------------------+--------------+
+145 rows in set (0.00 sec)
+
+# 12
+
++------------------------------------+----------------------------------------+--------------+-------------+
+| ProductName                        | CompanyName                            | UnitsInStock | Country     |
++------------------------------------+----------------------------------------+--------------+-------------+
+| Chai                               | Exotic Liquids                         |           39 | UK          |
+| Chang                              | Exotic Liquids                         |           17 | UK          |
+| Aniseed Syrup                      | Exotic Liquids                         |           13 | UK          |
+| Chef Anton's Cajun Seasoning       | New Orleans Cajun Delights             |           53 | USA         |
+| Chef Anton's Gumbo Mix             | New Orleans Cajun Delights             |            0 | USA         |
+| Grandma's Boysenberry Spread       | Grandma Kelly's Homestead              |          120 | USA         |
+| Uncle Bob's Organic Dried Pears    | Grandma Kelly's Homestead              |           15 | USA         |
+| Northwoods Cranberry Sauce         | Grandma Kelly's Homestead              |            6 | USA         |
+| Mishi Kobe Niku                    | Tokyo Traders                          |           29 | Japan       |
+| Ikura                              | Tokyo Traders                          |           31 | Japan       |
+| Queso Cabrales                     | Cooperativa de Quesos 'Las Cabras'     |           22 | Spain       |
+| Queso Manchego La Pastora          | Cooperativa de Quesos 'Las Cabras'     |           86 | Spain       |
+| Konbu                              | Mayumi's                               |           24 | Japan       |
+| Tofu                               | Mayumi's                               |           35 | Japan       |
+| Genen Shouyu                       | Mayumi's                               |           39 | Japan       |
+| Pavlova                            | Pavlova Ltd.                           |           29 | Australia   |
+| Alice Mutton                       | Pavlova Ltd.                           |            0 | Australia   |
+| Carnarvon Tigers                   | Pavlova Ltd.                           |           42 | Australia   |
+| Teatime Chocolate Biscuits         | Specialty Biscuits Ltd.                |           25 | UK          |
+| Sir Rodney's Marmalade             | Specialty Biscuits Ltd.                |           40 | UK          |
+| Sir Rodney's Scones                | Specialty Biscuits Ltd.                |            3 | UK          |
+| Gustaf's Kn‰ckebrˆd                | PB Knäckebröd AB                       |          104 | Sweden      |
+| Tunnbrˆd                           | PB Knäckebröd AB                       |           61 | Sweden      |
+| Guaran· Fant·stica                 | Refrescos Americanas LTDA              |           20 | Brazil      |
+| NuNuCa Nuﬂ-Nougat-Creme            | Heli Süßwaren GmbH & Co. KG            |           76 | Germany     |
+| Gumb‰r Gummib‰rchen                | Heli Süßwaren GmbH & Co. KG            |           15 | Germany     |
+| Schoggi Schokolade                 | Heli Süßwaren GmbH & Co. KG            |           49 | Germany     |
+| Rˆssle Sauerkraut                  | Plutzer Lebensmittelgroßmärkte AG      |           26 | Germany     |
+| Th¸ringer Rostbratwurst            | Plutzer Lebensmittelgroßmärkte AG      |            0 | Germany     |
+| Nord-Ost Matjeshering              | Nord-Ost-Fisch Handelsgesellschaft mbH |           10 | Germany     |
+| Gorgonzola Telino                  | Formaggi Fortini s.r.l.                |            0 | Italy       |
+| Mascarpone Fabioli                 | Formaggi Fortini s.r.l.                |            9 | Italy       |
+| Geitost                            | Norske Meierier                        |          112 | Norway      |
+| Sasquatch Ale                      | Bigfoot Breweries                      |          111 | USA         |
+| Steeleye Stout                     | Bigfoot Breweries                      |           20 | USA         |
+| Inlagd Sill                        | Svensk Sjöföda AB                      |          112 | Sweden      |
+| Gravad lax                         | Svensk Sjöföda AB                      |           11 | Sweden      |
+| CÙte de Blaye                      | Aux joyeux ecclésiastiques             |           17 | France      |
+| Chartreuse verte                   | Aux joyeux ecclésiastiques             |           69 | France      |
+| Boston Crab Meat                   | New England Seafood Cannery            |          123 | USA         |
+| Jack's New England Clam Chowder    | New England Seafood Cannery            |           85 | USA         |
+| Singaporean Hokkien Fried Mee      | Leka Trading                           |           26 | Singapore   |
+| Ipoh Coffee                        | Leka Trading                           |           17 | Singapore   |
+| Gula Malacca                       | Leka Trading                           |           27 | Singapore   |
+| Rogede sild                        | Lyngbysild                             |            5 | Denmark     |
+| Spegesild                          | Lyngbysild                             |           95 | Denmark     |
+| Zaanse koeken                      | Zaanse Snoepfabriek                    |           36 | Netherlands |
+| Chocolade                          | Zaanse Snoepfabriek                    |           15 | Netherlands |
+| Maxilaku                           | Karkki Oy                              |           10 | Finland     |
+| Valkoinen suklaa                   | Karkki Oy                              |           65 | Finland     |
+| Manjimup Dried Apples              | G'day Mate                             |           20 | Australia   |
+| Filo Mix                           | G'day Mate                             |           38 | Australia   |
+| Perth Pasties                      | G'day Mate                             |            0 | Australia   |
+| TourtiËre                          | Ma Maison                              |           21 | Canada      |
+| P‚tÈ chinois                       | Ma Maison                              |          115 | Canada      |
+| Gnocchi di nonna Alice             | Pasta Buttini s.r.l.                   |           21 | Italy       |
+| Ravioli Angelo                     | Pasta Buttini s.r.l.                   |           36 | Italy       |
+| Escargots de Bourgogne             | Escargots Nouveaux                     |           62 | France      |
+| Raclette Courdavault               | Gai pâturage                           |           79 | France      |
+| Camembert Pierrot                  | Gai pâturage                           |           19 | France      |
+| Sirop d'Èrable                     | Forêts dérables                        |          113 | Canada      |
+| Tarte au sucre                     | Forêts dérables                        |           17 | Canada      |
+| Vegie-spread                       | Pavlova Ltd.                           |           24 | Australia   |
+| Wimmers gute Semmelknˆdel          | Plutzer Lebensmittelgroßmärkte AG      |           22 | Germany     |
+| Louisiana Fiery Hot Pepper Sauce   | New Orleans Cajun Delights             |           76 | USA         |
+| Louisiana Hot Spiced Okra          | New Orleans Cajun Delights             |            4 | USA         |
+| Laughing Lumberjack Lager          | Bigfoot Breweries                      |           52 | USA         |
+| Scottish Longbreads                | Specialty Biscuits Ltd.                |            6 | UK          |
+| Gudbrandsdalsost                   | Norske Meierier                        |           26 | Norway      |
+| Outback Lager                      | Pavlova Ltd.                           |           15 | Australia   |
+| Flotemysost                        | Norske Meierier                        |           26 | Norway      |
+| Mozzarella di Giovanni             | Formaggi Fortini s.r.l.                |           14 | Italy       |
+| Rˆd Kaviar                         | Svensk Sjöföda AB                      |          101 | Sweden      |
+| Longlife Tofu                      | Tokyo Traders                          |            4 | Japan       |
+| Rhˆnbr‰u Klosterbier               | Plutzer Lebensmittelgroßmärkte AG      |          125 | Germany     |
+| Lakkalikˆˆri                       | Karkki Oy                              |           57 | Finland     |
+| Original Frankfurter gr¸ne Soﬂe    | Plutzer Lebensmittelgroßmärkte AG      |           32 | Germany     |
++------------------------------------+----------------------------------------+--------------+-------------+
+77 rows in set (0.00 sec)  
