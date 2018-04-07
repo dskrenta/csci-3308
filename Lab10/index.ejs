@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/header.ejs %>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Lab 10</h1>
+  <ul>
+    <li>David Skrenta</li>
+    <li><%= (new Date()).toString() %></li>
+    <li>CSCI-3308</li>
+    <li>
+      <ol>
+        <li>
+          When would you choose an IaaS over PaaS and why? Give an example scenario where
+an IaaS would be the best option and explain why it is a better choice than a PaaS (in
+your scenario).
+          <br />
+          <b>Depending on the case it can be better to use IaaS if the developer requires greater customization and or they don't need the benefits of the platform. Example: standalone API server</b>
+        </li>
+        <li>
+          Describe a security concern in cloud computing data storage.
+          <br />
+          <b>The parent company holds all of your code and data. Also most cloud services run code on different machines meaning they are more susceptible to cross site scripting attacks if the developer did not setup the configuration corretly.</b>
+        </li>
+        <li>
+          Why shouldn’t all software and apps migrate to the cloud? Give an example or two
+of software that would not benefit from being in the cloud.
+          <br />
+          <b>Software that has more benefits running locally should not be moved to the cloud. Considerations can include speed, data transfer, security, etc. Examples: Calculators, local file search engines</b>
+        </li>
+      </ol>
+    </li>
+  </ul>
+</div>
+
+
+</body>
+</html>
