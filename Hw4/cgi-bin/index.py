@@ -1,14 +1,18 @@
 #!/usr/bin/env python2
 
+import urllib2
+import json
+
 print 'Content-type:text/html'
 print
 
-contents = """
+contents = '''
   <html>
     <head>
       <title>
         HW #4 David Skrenta
       </title>
+      <script src="http://code.jquery.com/jquery-2.2.1.js"></script>
     </head>
     <body>
       <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -84,6 +88,151 @@ contents = """
       </svg>
     </body>
   </html>
-"""
-
+'''
 print contents
+
+states_caps = {
+  'AL':{'state':'Alabama',        'capital':'Montgomery'},
+  'AK':{'state':'Alaska',         'capital':'Juneau'},
+  'AZ':{'state':'Arizona',        'capital':'Phoenix'},
+  'AR':{'state':'Arkansas',       'capital':'Little Rock'},
+  'CA':{'state':'California',     'capital':'Sacramento'},
+  'CO':{'state':'Colorado',       'capital':'Denver'},
+  'CT':{'state':'Connecticut',    'capital':'Hartford'},
+  'DE':{'state':'Deleware',       'capital':'Dover'},
+  'FL':{'state':'Florida',        'capital':'Tallahassee'},
+  'GA':{'state':'Georgia',        'capital':'Atlanta'},
+  'HI':{'state':'Hawaii',         'capital':'Honolulu'},
+  'ID':{'state':'Idaho',          'capital':'Boise'},
+  'IL':{'state':'Illinois',       'capital':'Springfield'},
+  'IN':{'state':'Indiana',        'capital':'Indianapolis'},
+  'IA':{'state':'Iowa',           'capital':'Des Moines'},
+}
+'''
+'KS':{'state':'Kansas',         'capital':'Topeka'},
+'KY':{'state':'Kentucky',       'capital':'Frankfort'},
+'LA':{'state':'Louisiana',      'capital':'Baton Rouge'},
+'ME':{'state':'Maine',          'capital':'Augusta'},
+'MD':{'state':'Maryland',       'capital':'Annapolis'},
+'MA':{'state':'Massachusetts',  'capital':'Boston'},
+'MI':{'state':'Michigan',       'capital':'Lansing'},
+'MN':{'state':'Minnesota',      'capital':'Saint Paul'},
+'MS':{'state':'Mississippi',    'capital':'Jackson'},
+'MO':{'state':'Missouri',       'capital':'Jefferson City'},
+'MT':{'state':'Montana',        'capital':'Helena'},
+'NE':{'state':'Nebraska',       'capital':'Lincoln'},
+'NV':{'state':'Nevada',         'capital':'Carson City'},
+'NH':{'state':'New Hampshire',  'capital':'Concord'},
+'NJ':{'state':'New Jersey',     'capital':'Trenton'},
+'NM':{'state':'New Mexico',     'capital':'Santa Fe'},
+'NY':{'state':'New York',       'capital':'Albany'},
+'NC':{'state':'North Carolina', 'capital':'Raleigh'},
+'ND':{'state':'North Dakota',   'capital':'Bismarck'},
+'OH':{'state':'Ohio',           'capital':'Columbus'},
+'OK':{'state':'Oklahoma',       'capital':'Oklahoma City'},
+'OR':{'state':'Oregon',         'capital':'Salem'},
+'PA':{'state':'Pennsylvania',   'capital':'Harrisburg'},
+'RI':{'state':'Rhode Island',   'capital':'Providence'},
+'SC':{'state':'South Carolina', 'capital':'Columbia'},
+'SD':{'state':'South Dakota',   'capital':'Pierre'},
+'TN':{'state':'Tennessee',      'capital':'Nashville'},
+'TX':{'state':'Texas',          'capital':'Austin'},
+'UT':{'state':'Utah',           'capital':'Salt Lake City'},
+'VT':{'state':'Vermont',        'capital':'Montpelier'},
+'VA':{'state':'Virginia',       'capital':'Richmond'},
+'WA':{'state':'Washington',     'capital':'Olympia'},
+'WV':{'state':'West Virginia',  'capital':'Charleston'},
+'WI':{'state':'Wisconsin',      'capital':'Madison'},
+'WY':{'state':'Wyoming',        'capital':'Cheyenne'},
+}
+'''
+
+city_locs = {
+  "Montgomery": [32.2334,-86.2085],
+  "Juneau": [58.3019,-134.4197],
+  "Phoenix": [33.2765,-112.1872],
+  "Little Rock": [34.7465,-92.2896],
+  "Sacramento": [38.5816,-121.4944],
+  "Denver": [39.7474,-104.9928],
+  "Hartford": [41.7637,-72.6851],
+  "Dover": [39.1582,-75.5244],
+  "Tallahassee": [30.4383,-84.2807],
+  "Atlanta": [33.7490,-84.3880],
+  "Honolulu": [24.8598,-168.0218],
+  "Boise": [43.4599,-116.2440],
+  "Springfield": [39.7495,-89.6060],
+  "Indianapolis": [39.7684,-86.1580],
+  "Des Moines": [41.6727,-93.5722],
+  "Topeka": [39.0429,-95.7697],
+  "Frankfort": [38.2341,-84.8748],
+  "Baton Rouge": [30.5159,-91.0804],
+  "Augusta": [44.3106,-69.7795],
+  "Annapolis": [38.9785,-76.4922],
+  "Boston": [42.3389,-70.9196],
+  "Lansing": [42.5992,-84.3720],
+  "Saint Paul": [45.0059,-93.1059],
+  "Jackson": [32.2988,-90.1848],
+  "Jefferson City": [38.5309,-92.2493],
+  "Helena": [46.5927,-112.0361],
+  "Lincoln": [40.9080,-96.7103],
+  "Carson City": [39.1638,-119.7674],
+  "Concord": [43.2081,-71.5376],
+  "Trenton": [40.2171,-74.7429],
+  "Santa Fe": [35.6870,-105.9378],
+  "Albany": [42.6149,-73.9708],
+  "Raleigh": [35.7721,-78.6386],
+  "Bismarck": [46.8083,-100.7837],
+  "Columbus": [39.9690,-83.0114],
+  "Oklahoma City": [35.5514,-97.4075],
+  "Salem": [44.9849,-122.9988],
+  "Harrisburg": [40.2737,-76.8844],
+  "Providence": [41.8240,-71.4128],
+  "Columbia": [34.0060,-80.9708],
+  "Pierre": [44.5422,-100.2754],
+  "Nashville": [36.1659,-86.7844],
+  "Austin": [30.3264,-97.7713],
+  "Salt Lake City": [40.7685,-111.8879],
+  "Montpelier": [44.2601,-72.5754],
+  "Richmond": [37.5538,-77.4603],
+  "Olympia": [47.0379,-122.9007],
+  "Charleston": [38.3498,-81.6326],
+  "Madison": [43.0696,-89.4239],
+  "Cheyenne": [41.3274,-104.6664]
+}
+
+def get_temp(lat, lng):
+  response = urllib2.urlopen('https://api.forecast.io/forecast/4fdab8494a67fc628390bd58b017f807/' + str(lat) + ',' + str(lng))
+  data = json.load(response)   
+  return data['currently']['temperature']
+
+def get_temp_by_state(state):
+  capital = states_caps[state]['capital']
+  lat_lng = city_locs[capital]
+  return get_temp(lat_lng[0], lat_lng[1])
+
+print '''
+<script>
+$( document ).ready(function() { '''
+
+for state in states_caps:
+  temp = get_temp_by_state(state)
+  color = 'gray'
+
+  if temp <= 10:
+    color = 'blue'
+  elif 10 < temp <= 30:
+    color = 'blue'
+  elif 30 < temp <= 50:
+    color = 'cyan'
+  elif 50 < temp <= 80:
+    color = 'green'
+  elif temp > 80:
+    color = 'orange'
+
+  print "$('#" + state + "').css('fill', '" + color + "')"
+
+# print "$('#CO').css('fill', 'red')"
+
+print '''
+});
+</script> '''
