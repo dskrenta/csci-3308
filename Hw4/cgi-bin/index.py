@@ -1,5 +1,9 @@
 #!/usr/bin/env python2
 
+# CSCI 3308
+# Hw 4
+# David Skrenta
+
 import urllib2
 import json
 
@@ -218,6 +222,8 @@ for state in states_caps:
   temp = get_temp_by_state(state)
   color = 'gray'
 
+  print temp
+
   if temp <= 10:
     color = 'blue'
   elif 10 < temp <= 30:
@@ -230,8 +236,6 @@ for state in states_caps:
     color = 'orange'
 
   print "$('#" + state + "').css('fill', '" + color + "')"
-
-# print "$('#CO').css('fill', 'red')"
 
 print '''
 });
