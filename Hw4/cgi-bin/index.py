@@ -227,13 +227,13 @@ for state in states_caps:
   if temp <= 10:
     color = 'blue'
   elif 10 < temp <= 30:
-    color = 'blue'
-  elif 30 < temp <= 50:
     color = 'cyan'
-  elif 50 < temp <= 80:
+  elif 30 < temp <= 50:
     color = 'green'
-  elif temp > 80:
+  elif 50 < temp <= 80:
     color = 'orange'
+  elif temp > 80:
+    color = 'red'
 
   print "$('#" + state + "').css('fill', '" + color + "')"
 
